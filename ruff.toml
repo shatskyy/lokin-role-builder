@@ -1,0 +1,11 @@
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "I", "UP", "B", "N"]
+ignore = [
+  "D",  # pydocstyle
+]
+
+[lint.isort]
+known-first-party = ["lokin_role_builder"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
