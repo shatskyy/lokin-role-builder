@@ -81,7 +81,5 @@ venv.bak/
 logs/
 *.log
 
-# alembic
-alembic.ini
-alembic/
+# alembic (tracked)
 
