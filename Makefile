@@ -1,12 +1,16 @@
-# names only; fill later
+PY = python3
+PIP = pip
+
+.PHONY: dev run test lint
 
 dev:
-	@# TODO: start local dev env or REPL later
+	$(PY) -m venv .venv && . .venv/bin/activate && $(PIP) install -e .[dev]
+
+run:
+	. .venv/bin/activate && uvicorn app.main:app --reload
 
 test:
-	pytest -q || true
+	. .venv/bin/activate && pytest -q
 
-sync-onet:
-	python -m role_builder.ingest.cli ingest onet --raw-dir $${RAW_ONET_DIR:-./data/raw/onet_30_0} --version 30.0 || true
-	python -m role_builder.ingest.cli ingest fts-rebuild || true
-	python -m role_builder.ingest.cli ingest verify || true
+lint:
+	. .venv/bin/activate && ruff check . && mypy .
